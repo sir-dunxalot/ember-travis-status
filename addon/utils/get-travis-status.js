@@ -9,7 +9,7 @@ export default function getTravisStatus(repo) {
     return;
   }
 
-  url = `https://api.travis-ci.org/repos/${repo}/builds`;
+  url = `//api.travis-ci.org/repos/${repo}/builds`;
 
   return new Ember.RSVP.Promise(function(resolve, reject) {
 
