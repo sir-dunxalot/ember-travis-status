@@ -27,12 +27,14 @@ export default function getTravisStatus(repo, branch) {
     Ember.$.get(url).done(function(builds) {
       const latestBuildResult = builds[0]['result'];
 
-      let status = 'failing';
+      let status;
 
       Ember.debug(`Fetched new value for ${repo}`);
 
-      if (latestBuildResult === 0) {
-        status = 'passing';
+      switch (latestBuildResult) {
+        case 0: status = 'passing'; break;
+        case 1: status = 'failing'; break;
+        default: status = 'Unknown';
       }
 
       TravisCache[repo] = status;
