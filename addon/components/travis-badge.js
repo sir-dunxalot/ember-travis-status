@@ -4,6 +4,7 @@ import layout from '../templates/components/travis-badge';
 export default Ember.Component.extend({
   attributeBindings: ['url:data', 'type'],
   branch: null,
+  classNames: ['travis-badge'],
   layout: layout,
   repo: null,
   tagName: 'object',
