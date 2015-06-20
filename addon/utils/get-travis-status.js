@@ -19,9 +19,7 @@ export default function getTravisStatus(repo) {
     if (cachedValue) {
       Ember.debug(`Returning cached value for ${repo}`);
 
-      return new Ember.RSVP.Promise(function(resolve) {
-        resolve(cachedValue);
-      });
+      return resolve(cachedValue);
     }
 
     /* Else, retrieve the build from the Travic API */
