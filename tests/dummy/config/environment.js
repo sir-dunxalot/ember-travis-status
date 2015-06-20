@@ -16,7 +16,12 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+
+    contentSecurityPolicy: {
+      "connect-src": "'self' api.travis-ci.org/",
+      "style-src": "'self' 'unsafe-inline'",
+    },
   };
 
   if (environment === 'development') {
