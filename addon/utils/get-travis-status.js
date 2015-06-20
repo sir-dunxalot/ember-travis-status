@@ -3,17 +3,17 @@ import TravisCache from 'ember-travis-status/services/travis-cache';
 
 export default function getTravisStatus(repo) {
   const cachedValue = TravisCache[repo]; // Bracket notation incase repo is not passed
-  let url;
-
-  if (!repo) {
-    return;
-  }
-
-  url = `//api.travis-ci.org/repos/${repo}/builds`;
+  const url = `//api.travis-ci.org/repos/${repo}/builds`;
 
   return new Ember.RSVP.Promise(function(resolve, reject) {
 
-    /* If the value has already been retrieved and cached, return
+    /* If no repo is passed, reject the promise */
+
+    if (!repo) {
+      return reject();
+    }
+
+    /* Else if the value has already been retrieved and cached, return
     the value as a promise so then() will not throw an error */
 
     if (cachedValue) {

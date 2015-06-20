@@ -1,19 +1,59 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
+
+let component;
+
+function set(keyValuePairs) {
+  Ember.run(component, function() {
+    component.setProperties(keyValuePairs);
+  });
+}
 
 moduleForComponent('travis-badge', 'Unit | Component | travis badge', {
   // Specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar'],
-  unit: true
+  unit: true,
+
+  beforeEach: function() {
+    component = this.subject();
+  }
 });
 
-test('it renders', function(assert) {
-  assert.expect(2);
+test('it can build the correct URL', function(assert) {
+  const branch = 'master';
+  const repo = 'sir-dunxalot/ember-modals';
 
-  // Creates the component instance
-  var component = this.subject();
-  assert.equal(component._state, 'preRender');
+  let fullUrl;
 
-  // Renders the component to the page
+  assert.equal(component._state, 'preRender',
+    'The component instance should be created');
+
+  set({ repo });
+
+  assert.equal(component.get('url'), `//travis-ci.org/${repo}.svg`,
+    'The URL should include the new repo');
+
+  assert.ok(component.get('type').indexOf('svg') > -1,
+    'The type property should reflect that the object is an SVG');
+
+  set({ branch });
+
+  fullUrl = `//travis-ci.org/${repo}.svg?branch=${branch}`;
+
+  assert.equal(component.get('url'), fullUrl,
+    'The URL should include the new branch param');
+
   this.render();
-  assert.equal(component._state, 'inDOM');
+
+  assert.equal(component._state, 'inDOM',
+    'The component should be inserted into the DOM');
+
+  assert.equal(component.$().attr('data'), fullUrl,
+    'The updated URL should be bound to the data attribute');
+
+  assert.ok(component.$().attr('type').indexOf('svg') > -1,
+    'The type attribute should reflect that the object is an SVG');
+
+
+
 });

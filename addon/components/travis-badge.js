@@ -14,10 +14,10 @@ export default Ember.Component.extend({
     const branch = this.get('branch');
     const repo = this.get('repo');
 
-    let url = `//travis-ci.org/${repo}.svg`
+    let url = `//travis-ci.org/${repo}.svg`;
 
     if (branch) {
-      url += `?${branch}`;
+      url += `?branch=${branch}`;
     }
 
     return url;
