@@ -1,0 +1,1 @@
+export { default } from 'ember-travis-status/components/travis-badge';

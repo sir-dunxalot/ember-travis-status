@@ -1,30 +1,36 @@
 import Ember from 'ember';
 import TravisCache from 'ember-travis-status/services/travis-cache';
 
-export default function getTravisStatus(repo, branch) {
-  const cachedValue = TravisCache[repo]; // Incase repo is not passed
+export default function getTravisStatus(repo) {
+  const cachedValue = TravisCache[repo]; // Bracket notation incase repo is not passed
   let url;
-
-  console.log();
 
   if (!repo) {
     return;
-  } else if (cachedValue) {
-    Ember.debug(`Returning cached value for ${repo}`);
-
-    return new Ember.RSVP.Promise(function(resolve) {
-      resolve(cachedValue);
-    });
   }
 
   url = `https://api.travis-ci.org/repos/${repo}/builds`;
 
-  if (branch) {
-    url += `?${branch}`;
-  }
-
   return new Ember.RSVP.Promise(function(resolve, reject) {
+
+    /* If the value has already been retrieved and cached, return
+    the value as a promise so then() will not throw an error */
+
+    if (cachedValue) {
+      Ember.debug(`Returning cached value for ${repo}`);
+
+      return new Ember.RSVP.Promise(function(resolve) {
+        resolve(cachedValue);
+      });
+    }
+
+    /* Else, retrieve the build from the Travic API */
+
     Ember.$.get(url).done(function(builds) {
+
+      /* Get the builds for the repo, grab the latest build,
+      and find the result ID */
+
       const latestBuildResult = builds[0]['result'];
 
       let status;
@@ -34,10 +40,14 @@ export default function getTravisStatus(repo, branch) {
       switch (latestBuildResult) {
         case 0: status = 'passing'; break;
         case 1: status = 'failing'; break;
-        default: status = 'Unknown';
+        default: status = 'unknown';
       }
 
+      /* Cache the repo-status KVP */
+
       TravisCache[repo] = status;
+
+      /* Return the status */
 
       resolve(status);
     }).fail(function(data) {

@@ -19,7 +19,9 @@ module.exports = function(environment) {
     },
 
     contentSecurityPolicy: {
-      "connect-src": "'self' api.travis-ci.org/",
+      "connect-src": "'self' api.travis-ci.org",
+      "frame-src": "'self' api.travis-ci.org travis-ci.org",
+      "object-src": "'self' travis-ci.org",
       "style-src": "'self' 'unsafe-inline'",
     },
   };
