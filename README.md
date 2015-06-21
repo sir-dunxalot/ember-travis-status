@@ -1,4 +1,5 @@
-# Ember-travis-status
+Ember-travis-status [![Build Status](https://travis-ci.org/sir-dunxalot/ember-travis-status.svg?branch=master)](https://travis-ci.org/sir-dunxalot/ember-travis-status)
+======
 
 This README outlines the details of collaborating on this Ember addon.
 
