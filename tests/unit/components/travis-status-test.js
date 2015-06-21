@@ -17,9 +17,11 @@ moduleForComponent('travis-status', 'Unit | Component | travis status', {
   },
 });
 
-test('it renders', function(assert) {
+test('the property bindings are correct', function(assert) {
   let className = component.get('className');
   let status = 'passing';
+
+  assert.expect(8);
 
   assert.equal(component._state, 'preRender',
     'The component instance should be created');
@@ -52,9 +54,9 @@ test('it renders', function(assert) {
   assert.ok(!component.get('isPassing'),
     "isPassing should be false when the returned status is 'failing'");
 
-  // this.render();
+  this.render();
 
-  // assert.equal(component._state, 'inDOM',
-    // 'The component should be inserted into the DOM');
+  assert.equal(component._state, 'inDOM',
+    'The component should be inserted into the DOM');
 
 });
