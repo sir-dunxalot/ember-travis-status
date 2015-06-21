@@ -43,17 +43,16 @@ test('it can build the correct URL', function(assert) {
   assert.equal(component.get('url'), fullUrl,
     'The URL should include the new branch param');
 
-  // this.render();
+  Ember.run(this, function() {
+    $element = this.$(); // Calls render
 
-  $element = this.$();
+    assert.equal(component._state, 'inDOM',
+      'The component should be inserted into the DOM');
 
-  assert.equal(component._state, 'inDOM',
-    'The component should be inserted into the DOM');
+    assert.equal($element.attr('data'), fullUrl,
+      'The updated URL should be bound to the data attribute');
 
-  assert.equal($element.attr('data'), fullUrl,
-    'The updated URL should be bound to the data attribute');
-
-  assert.ok($element.attr('type').indexOf('svg') > -1,
-    'The type attribute should reflect that the object is an SVG');
-
+    assert.ok($element.attr('type').indexOf('svg') > -1,
+      'The type attribute should reflect that the object is an SVG');
+  });
 });
