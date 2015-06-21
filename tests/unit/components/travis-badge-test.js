@@ -21,7 +21,7 @@ test('it can build the correct URL', function(assert) {
   const branch = 'master';
   const repo = 'sir-dunxalot/ember-modals';
 
-  let fullUrl;
+  let $element, fullUrl;
 
   assert.expect(7);
 
@@ -43,17 +43,17 @@ test('it can build the correct URL', function(assert) {
   assert.equal(component.get('url'), fullUrl,
     'The URL should include the new branch param');
 
-  this.render();
+  // this.render();
+
+  $element = this.$();
 
   assert.equal(component._state, 'inDOM',
     'The component should be inserted into the DOM');
 
-  assert.equal(component.$().attr('data'), fullUrl,
+  assert.equal($element.attr('data'), fullUrl,
     'The updated URL should be bound to the data attribute');
 
-  assert.ok(component.$().attr('type').indexOf('svg') > -1,
+  assert.ok($element.attr('type').indexOf('svg') > -1,
     'The type attribute should reflect that the object is an SVG');
-
-
 
 });
