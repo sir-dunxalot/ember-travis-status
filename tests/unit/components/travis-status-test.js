@@ -52,13 +52,9 @@ test('it renders', function(assert) {
   assert.ok(!component.get('isPassing'),
     "isPassing should be false when the returned status is 'failing'");
 
-  Ember.run(function() {
+  // this.render();
 
-    this.render();
-
-    assert.equal(component._state, 'inDOM',
-      'The component should be inserted into the DOM');
-
-  });
+  // assert.equal(component._state, 'inDOM',
+    // 'The component should be inserted into the DOM');
 
 });
