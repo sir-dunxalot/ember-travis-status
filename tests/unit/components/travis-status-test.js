@@ -18,7 +18,7 @@ moduleForComponent('travis-status', 'Unit | Component | travis status', {
 });
 
 test('the property bindings are correct', function(assert) {
-  let className = component.get('className');
+  // let className = component.get('className');
   let status = 'passing';
 
   // assert.expect(8);
