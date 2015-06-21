@@ -12,9 +12,9 @@ function set(keyValuePairs) {
 moduleForComponent('travis-status', 'Unit | Component | travis status', {
   unit: true,
 
-  beforeEach: function() {
-    component = this.subject();
-  },
+  // beforeEach: function() {
+  //   component = this.subject();
+  // },
 });
 
 test('basic', function(assert) {
