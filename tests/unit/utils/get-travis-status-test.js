@@ -5,7 +5,6 @@ module('Unit | Utility | get travis status', {
   needs: ['service:travis-cache'],
 });
 
-// Replace this with your real tests.
 test('it works', function(assert) {
   const result = getTravisStatus();
 

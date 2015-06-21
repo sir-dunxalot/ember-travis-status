@@ -1,5 +1,5 @@
 import Ember from 'ember';
 
 export default Ember.Object.create({
-  isTravisCache: true,
+  isTravisCache: true, // Helper property
 });

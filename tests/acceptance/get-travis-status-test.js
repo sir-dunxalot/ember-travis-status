@@ -44,8 +44,7 @@ test('Basic call to getTravisStatus', function(assert) {
 });
 
 test('Calls to the Travis cache', function(assert) {
-  // const TravisCache = application.registry.lookup('service:travis-cache');
-  const fakeCachedValue = 'never-passing';
+  const fakeCachedValue = 'never-passing-ever';
   const repo = 'sir-dunxalot/ember-modals';
 
   let status;
@@ -55,6 +54,9 @@ test('Calls to the Travis cache', function(assert) {
   visit('/');
 
   andThen(function() {
+
+    /* Pretend the value has been previously retrieved using
+    some unusual value */
 
     TravisCache.set(repo, fakeCachedValue);
 
@@ -68,6 +70,9 @@ test('Calls to the Travis cache', function(assert) {
   });
 
   andThen(function() {
+
+    /* Then check that the cached value, not
+    a real Travis API response, is retrieved */
 
     assert.equal(status, fakeCachedValue,
       "Status returned should be retrieved from the cache");
