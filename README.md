@@ -33,6 +33,7 @@ It returns a string of the build status of any **public** repo. Current values r
 - `'passing'` - The latest build is passing
 - `'failing'` - The latest build is failing
 - `'error'` - The latest build could not complete due to an error
+- `'no build available'` - There were no builds returned by the Travis API
 - `'unknown'` - There was an issue with the Travis API response or some other error
 
 ```js
@@ -41,13 +42,15 @@ import getTravisStatus from 'ember-travis-status/utils/get-travis-status';
 getTravisStatus('sir-dunxalot/ember-modals'); // 'passing'
 // or
 getTravisStatus('emberjs/emberjs-build'); // 'passing'
+// or
+getTravisStatus('sir-dunxalot/some-fake-repo'); // 'no build available'
 ```
 
 |         | Name            | Type   | Description                                                                                                                            |   |
 |---------|-----------------|--------|----------------------------------------------------------------------------------------------------------------------------------------|---|
 | Method  | getTravisStatus | N/A    | A utility to get the travis status of the latest build for any public Travis CI repo                                                   |   |
 | Param   | repo            | String | The username/repo-name that identifies the public Travis CI repo                                                                       |   |
-| Returns | status          | String | The latest build status for the repo. Currently supported values are `'passing'`, `'failing'`, `'error'` (build error), or `'unknown'` |   |
+| Returns | status          | String | The latest build status for the repo. Currently supported values are `'passing'`, `'failing'`, `'error'` (build error), `'no build available'` (no builds returned by the Travis API), or `'unknown'` |   |
 
 ## Components
 

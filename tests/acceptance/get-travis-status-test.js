@@ -43,6 +43,33 @@ test('Basic call to getTravisStatus', function(assert) {
   });
 });
 
+test('Call for non-existent repo', function(assert) {
+  let status;
+
+  assert.expect(1);
+
+  visit('/');
+
+  andThen(function() {
+    const repo = 'sir-dunxalot/some-fake-repo';
+
+    getTravisStatus(repo).then(function(buildStatus) {
+      status = buildStatus;
+    });
+
+    Ember.Test.registerWaiter(function() {
+      return !!status;
+    });
+  });
+
+  andThen(function() {
+
+    assert.equal(status, 'no build available',
+      'Status returned for fake repo should be "no build available"');
+
+  });
+});
+
 test('Calls to the Travis cache', function(assert) {
   const fakeCachedValue = 'never-passing-ever';
   const repo = 'sir-dunxalot/ember-modals';

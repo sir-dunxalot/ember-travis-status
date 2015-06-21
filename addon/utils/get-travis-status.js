@@ -18,8 +18,6 @@ export default function getTravisStatus(repo) {
     the value as a promise so then() will not throw an error */
 
     if (cachedValue) {
-      Ember.debug(`Returning cached value for ${repo}`);
-
       return resolve(cachedValue);
     }
 
@@ -28,15 +26,18 @@ export default function getTravisStatus(repo) {
     /* Else, retrieve the build from the Travis API */
 
     Ember.$.get(url).done(function(builds) {
+      let latestBuildResult, status;
+
+      /* If there are no builds, return */
+
+      if (!builds.length) {
+        return resolve('no build available');
+      }
 
       /* Get the builds for the repo, grab the latest build,
       and find the result ID */
 
-      const latestBuildResult = builds[0]['result'];
-
-      let status;
-
-      Ember.debug(`Fetched new value for ${repo}`);
+      latestBuildResult = builds[0]['result'];
 
       switch (latestBuildResult) {
         case 0: status = 'passing'; break;
