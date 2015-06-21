@@ -10,13 +10,11 @@ function set(keyValuePairs) {
 }
 
 moduleForComponent('travis-badge', 'Unit | Component | travis badge', {
-  // Specify the other units that are required for this test
-  // needs: ['component:foo', 'helper:bar'],
   unit: true,
 
   beforeEach: function() {
     component = this.subject();
-  }
+  },
 });
 
 test('it can build the correct URL', function(assert) {
@@ -24,6 +22,8 @@ test('it can build the correct URL', function(assert) {
   const repo = 'sir-dunxalot/ember-modals';
 
   let fullUrl;
+
+  assert.expect(7);
 
   assert.equal(component._state, 'preRender',
     'The component instance should be created');

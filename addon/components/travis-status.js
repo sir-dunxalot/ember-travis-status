@@ -5,9 +5,9 @@ import layout from '../templates/components/travis-status';
 export default Ember.Component.extend({
   className: 'travis-status',
   classNameBindings: ['className', 'statusClassName'],
-  failing: Ember.computed.equal('status', 'failing'),
+  isFailing: Ember.computed.equal('status', 'failing'),
+  isPassing: Ember.computed.equal('status', 'passing'),
   layout: layout,
-  passing: Ember.computed.equal('status', 'passing'),
   repo: null,
   status: null,
   tagName: 'dl',
@@ -18,7 +18,9 @@ export default Ember.Component.extend({
 
   getStatus: Ember.on('init', function() {
     getTravisStatus(this.get('repo')).then(function(status) {
-      this.set('status', status);
+      if (!this.get('isDestroying')) {
+        this.set('status', status);
+      }
     }.bind(this));
   }),
 });
