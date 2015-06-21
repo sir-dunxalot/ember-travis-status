@@ -19,12 +19,16 @@ moduleForComponent('travis-status', 'Unit | Component | travis status', {
 
 test('the property bindings are correct', function(assert) {
   // let className = component.get('className');
-  let status = 'passing';
+  // let status = 'passing';
 
   // assert.expect(8);
 
-  assert.equal(component._state, 'preRender',
-    'The component instance should be created');
+  Ember.run(function() {
+
+    assert.equal(component._state, 'preRender',
+      'The component instance should be created');
+
+  });
 
   // set({ status });
 
