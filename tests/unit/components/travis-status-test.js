@@ -3,18 +3,18 @@ import { moduleForComponent, test } from 'ember-qunit';
 
 let component;
 
-// function set(keyValuePairs) {
-//   Ember.run(component, function() {
-//     component.setProperties(keyValuePairs);
-//   });
-// }
+function set(keyValuePairs) {
+  Ember.run(component, function() {
+    component.setProperties(keyValuePairs);
+  });
+}
 
 moduleForComponent('travis-status', 'Unit | Component | travis status', {
   unit: true,
 
-  // beforeEach: function() {
-  //   component = this.subject();
-  // },
+  beforeEach: function() {
+    component = this.subject();
+  },
 });
 
 test('basic', function(assert) {
