@@ -1,7 +1,7 @@
 Ember-travis-status [![Build Status](https://travis-ci.org/sir-dunxalot/ember-travis-status.svg?branch=master)](https://travis-ci.org/sir-dunxalot/ember-travis-status)
 ======
 
-This Ember addon provides you with utilities for retrieving the build status of any Travis CI repo and components to show dynamic content based on the returned status.
+This Ember addon provides you with utilities for retrieving the build status of any **public** Travis CI repo and components to show dynamic content based on the returned status.
 
 Build statuses are cached in the app session to avoid unnecessary API calls.
 
@@ -9,12 +9,12 @@ Build statuses are cached in the app session to avoid unnecessary API calls.
 
 - [Installation](#installation)
 - [Utilities](#utilities)
-  - [getTravisStatus()](#getTravisStatus)
+  - [`getTravisStatus()`](#gettravisstatus)
 - [Components](#components)
-  - [{{travis-badge}}](#travis-badge)
-  - [{{travis-status}}](#travis-status)
+  - [`{{travis-badge}}`](#travis-badge)
+  - [`{{travis-status}}`](#travis-status)
 
-## Installlation
+## Installation
 
 ```sh
 ember install ember-travis-status
@@ -28,24 +28,26 @@ All components in this addon call a single utility, which can be used independen
 
 `getTravisStatus()` expects a single param, `repo`, which is the `username/repo-name` combo Travis uses to identify repos.
 
-It returns a string of the build status. Current values returned are:
+It returns a string of the build status of any **public** repo. Current values returned are:
 
 - `'passing'` - The latest build is passing
 - `'failing'` - The latest build is failing
 - `'error'` - The latest build could not complete due to an error
 - `'unknown'` - There was an issue with the Travis API response or some other error
 
-```
+```js
 import getTravisStatus from 'ember-travis-status/utils/get-travis-status';
 
 getTravisStatus('sir-dunxalot/ember-modals'); // 'passing'
+// or
+getTravisStatus('emberjs/emberjs-build'); // 'passing'
 ```
 
-|         | Name            | Type   | Description                                                      |
-|---------|-----------------|--------|------------------------------------------------------------------|
-| Method  | getTravisStatus |        |                                                                  |
-| Param   | repo            | String | The username/repo-name that identifies the public Travis CI repo |
-| Returns | status          | String |                                                                  |
+|         | Name            | Type   | Description                                                                                                                            |   |
+|---------|-----------------|--------|----------------------------------------------------------------------------------------------------------------------------------------|---|
+| Method  | getTravisStatus | N/A    | A utility to get the travis status of the latest build for any public Travis CI repo                                                   |   |
+| Param   | repo            | String | The username/repo-name that identifies the public Travis CI repo                                                                       |   |
+| Returns | status          | String | The latest build status for the repo. Currently supported values are `'passing'`, `'failing'`, `'error'` (build error), or `'unknown'` |   |
 
 ## Components
 
@@ -57,6 +59,7 @@ You may pass the component `repo` and `branch` attributes:
 
 ```hbs
 {{travis-badge repo='sir-dunxalot/ember-modals'}}
+{{!--Or--}}
 {{travis-badge repo='sir-dunxalot/ember-modals' branch='develop'}}
 ```
 
@@ -92,6 +95,10 @@ export default TravisStatusComponent.extend({
   {{/if}}
 </dd>
 ```
+
+You can see the full list of properties available [inside the component here](https://github.com/sir-dunxalot/ember-travis-status/blob/master/addon/components/travis-status.js).
+
+Then place the `{{travis-status` somewhere in your templates:
 
 ```hbs
 {{travis-status repo='sir-dunxalot/ember-modals'}}
