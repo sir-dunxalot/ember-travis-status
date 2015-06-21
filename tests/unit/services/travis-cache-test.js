@@ -1,12 +1,19 @@
 import { moduleFor, test } from 'ember-qunit';
 
+let service;
+
 moduleFor('service:travis-cache', 'Unit | Service | travis cache', {
-  // Specify the other units that are required for this test.
-  // needs: ['service:foo']
+
+  beforeEach: function() {
+    service = this.subject();
+  },
+
 });
 
-// Replace this with your real tests.
+
 test('it exists', function(assert) {
-  var service = this.subject();
-  assert.ok(service);
+
+  assert.ok(service.get('isTravisCache'),
+    'The service should exist for the Travis cache');
+
 });
