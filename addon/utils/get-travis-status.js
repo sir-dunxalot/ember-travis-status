@@ -30,8 +30,6 @@ export default function getTravisStatus(repo) {
 
     Ember.$.get(url).done(function(builds) {
 
-      console.log(builds);
-
       /* Get the builds for the repo, grab the latest build,
       and find the result ID */
 
@@ -56,7 +54,6 @@ export default function getTravisStatus(repo) {
 
       resolve(status);
     }).fail(function(data) {
-      console.log('FAILING', data);
       reject(data);
     });
   });
