@@ -17,10 +17,12 @@ export default Ember.Component.extend({
   }),
 
   getStatus: Ember.on('init', function() {
-    getTravisStatus(this.get('repo')).then(function(status) {
-      if (!this.get('isDestroying')) {
-        this.set('status', status);
+    const _this = this;
+
+    getTravisStatus(_this.get('repo')).then(function(status) {
+      if (!_this.get('isDestroying')) {
+        _this.set('status', status);
       }
-    }.bind(this));
+    });
   }),
 });
