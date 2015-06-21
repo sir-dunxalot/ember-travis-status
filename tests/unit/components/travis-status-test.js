@@ -18,6 +18,8 @@ moduleForComponent('travis-status', 'Unit | Component | travis status', {
 });
 
 test('the property bindings are correct', function(assert) {
+  const done = assert.async();
+
   let className = component.get('className');
   let status = 'passing';
 
@@ -58,5 +60,7 @@ test('the property bindings are correct', function(assert) {
 
   assert.equal(component._state, 'inDOM',
     'The component should be inserted into the DOM');
+
+  done();
 
 });
