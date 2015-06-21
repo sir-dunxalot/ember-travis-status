@@ -1,7 +1,7 @@
 {
   "name": "ember-travis-status",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.1.0",
+  "description": "Retrieve the build status of any Travis CI public repo in an Ember app or addon",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,7 +11,7 @@
     "build": "ember build",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": "https://github.com/sir-dunxalot/ember-travis-status",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -34,7 +34,14 @@
     "ember-try": "0.0.6"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "travis",
+    "travis ci",
+    "testing",
+    "ci",
+    "badge",
+    "build",
+    "status"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.0.0",

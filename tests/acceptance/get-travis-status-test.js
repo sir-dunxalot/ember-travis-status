@@ -75,7 +75,7 @@ test('Calls to the Travis cache', function(assert) {
     a real Travis API response, is retrieved */
 
     assert.equal(status, fakeCachedValue,
-      "Status returned should be retrieved from the cache");
+      'Status returned should be retrieved from the cache');
 
   });
 });
