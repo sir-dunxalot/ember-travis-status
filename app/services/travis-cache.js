@@ -1,1 +1,0 @@
-export { default } from 'ember-travis-status/services/travis-cache';

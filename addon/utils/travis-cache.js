@@ -1,5 +1,5 @@
 import Ember from 'ember';
 
-export default Ember.Service.extend({
+export default Ember.Object.create({
   isTravisCache: true,
 });

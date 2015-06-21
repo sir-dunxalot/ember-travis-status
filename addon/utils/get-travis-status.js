@@ -1,9 +1,9 @@
 import Ember from 'ember';
-import TravisCache from 'ember-travis-status/services/travis-cache';
+// import TravisCache from 'ember-travis-status/services/travis-cache';
+import TravisCache from './travis-cache';
 
 export default function getTravisStatus(repo) {
-  const cachedValue = TravisCache[repo]; // Bracket notation incase repo is not passed
-  const url = `//api.travis-ci.org/repos/${repo}/builds`;
+  let cachedValue, url;
 
   return new Ember.RSVP.Promise(function(resolve, reject) {
 
@@ -13,6 +13,8 @@ export default function getTravisStatus(repo) {
       return reject();
     }
 
+    cachedValue = TravisCache.get(repo);
+
     /* Else if the value has already been retrieved and cached, return
     the value as a promise so then() will not throw an error */
 
@@ -21,6 +23,8 @@ export default function getTravisStatus(repo) {
 
       return resolve(cachedValue);
     }
+
+    url = `//api.travis-ci.org/repos/${repo}/builds`;
 
     /* Else, retrieve the build from the Travic API */
 
@@ -43,7 +47,7 @@ export default function getTravisStatus(repo) {
 
       /* Cache the repo-status KVP */
 
-      TravisCache[repo] = status;
+      TravisCache.set(repo, status);
 
       /* Return the status */
 
