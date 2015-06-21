@@ -1,5 +1,4 @@
 import Ember from 'ember';
-// import TravisCache from 'ember-travis-status/services/travis-cache';
 import TravisCache from './travis-cache';
 
 export default function getTravisStatus(repo) {
