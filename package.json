@@ -1,6 +1,6 @@
 {
   "name": "ember-travis-status",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Retrieve the build status of any Travis CI public repo in an Ember app or addon",
   "directories": {
     "doc": "doc",
