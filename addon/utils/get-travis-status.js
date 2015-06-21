@@ -24,11 +24,13 @@ export default function getTravisStatus(repo) {
       return resolve(cachedValue);
     }
 
-    url = `//api.travis-ci.org/repos/${repo}/builds`;
+    url = `https://api.travis-ci.org/repos/${repo}/builds`;
 
-    /* Else, retrieve the build from the Travic API */
+    /* Else, retrieve the build from the Travis API */
 
     Ember.$.get(url).done(function(builds) {
+
+      console.log(builds);
 
       /* Get the builds for the repo, grab the latest build,
       and find the result ID */
@@ -42,6 +44,7 @@ export default function getTravisStatus(repo) {
       switch (latestBuildResult) {
         case 0: status = 'passing'; break;
         case 1: status = 'failing'; break;
+        case null: status = 'build error'; break;
         default: status = 'unknown';
       }
 
@@ -53,6 +56,7 @@ export default function getTravisStatus(repo) {
 
       resolve(status);
     }).fail(function(data) {
+      console.log('FAILING', data);
       reject(data);
     });
   });

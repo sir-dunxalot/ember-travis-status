@@ -30,7 +30,7 @@ test('it can build the correct URL', function(assert) {
 
   set({ repo });
 
-  assert.equal(component.get('url'), `//travis-ci.org/${repo}.svg`,
+  assert.equal(component.get('url'), `https://travis-ci.org/${repo}.svg`,
     'The URL should include the new repo');
 
   assert.ok(component.get('type').indexOf('svg') > -1,
@@ -38,7 +38,7 @@ test('it can build the correct URL', function(assert) {
 
   set({ branch });
 
-  fullUrl = `//travis-ci.org/${repo}.svg?branch=${branch}`;
+  fullUrl = `https://travis-ci.org/${repo}.svg?branch=${branch}`;
 
   assert.equal(component.get('url'), fullUrl,
     'The URL should include the new branch param');
