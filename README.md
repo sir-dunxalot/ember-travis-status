@@ -20,6 +20,24 @@ Build statuses are cached in the app session to avoid unnecessary API calls.
 ember install ember-travis-status
 ```
 
+Since this addon makes requests to the travis-ci API, make sure to add it to your 
+[Content Security Policy](https://github.com/rwjblue/ember-cli-content-security-policy):
+
+```javascript
+// config/environment.js
+module.exports = function(environment) {
+  var ENV = {
+    contentSecurityPolicy: {
+      "connect-src": "'self' api.travis-ci.org",
+      "frame-src": "'self' api.travis-ci.org travis-ci.org",
+      "object-src": "'self' travis-ci.org",
+      "style-src": "'self' 'unsafe-inline'",
+    }
+  };
+  return ENV;
+};
+```
+
 ## Utilities
 
 All components in this addon call a single utility, which can be used independently: `getTravisStatus()`.
