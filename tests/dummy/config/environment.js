@@ -23,7 +23,7 @@ module.exports = function(environment) {
       "frame-src": "'self' api.travis-ci.org travis-ci.org",
       "object-src": "'self' travis-ci.org",
       "style-src": "'self' 'unsafe-inline'",
-    },
+    }
   };
 
   if (environment === 'development') {
@@ -47,7 +47,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.baseURL = '/ember-travis-status';
   }
 
   return ENV;
