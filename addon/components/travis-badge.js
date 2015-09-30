@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import layout from '../templates/components/travis-badge';
 
+const { computed } = Ember;
+
 export default Ember.Component.extend({
   attributeBindings: ['url:data', 'type'],
   branch: null,
@@ -10,7 +12,7 @@ export default Ember.Component.extend({
   tagName: 'object',
   type: 'image/svg+xml',
 
-  url: Ember.computed('branch', 'repo', function() {
+  url: computed('branch', 'repo', function() {
     const branch = this.get('branch');
     const repo = this.get('repo');
 
