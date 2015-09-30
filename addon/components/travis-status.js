@@ -13,16 +13,14 @@ export default Ember.Component.extend({
   tagName: 'dl',
 
   statusClassName: Ember.computed('className', 'status', function() {
-    return this.get('className') + '-' + this.get('status');
+    return `${this.get('className')}-${this.get('status')}`;
   }),
 
   getStatus: Ember.on('init', function() {
-    const _this = this;
-
-    getTravisStatus(_this.get('repo')).then(function(status) {
-      if (!_this.get('isDestroying')) {
-        _this.set('status', status);
+    getTravisStatus(this.get('repo')).then((status) => {
+      if (!this.get('isDestroying')) {
+        this.set('status', status);
       }
     });
-  }),
+  })
 });

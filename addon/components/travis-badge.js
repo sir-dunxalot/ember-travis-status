@@ -17,12 +17,9 @@ export default Ember.Component.extend({
     let url = `https://travis-ci.org/${repo}.svg`;
 
     if (branch) {
-      url += `?branch=${branch}`;
+      return `${url}?branch=${branch}`;
     }
 
     return url;
-  }),
-
+  })
 });
-
-//
