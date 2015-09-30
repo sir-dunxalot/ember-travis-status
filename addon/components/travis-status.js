@@ -13,7 +13,7 @@ export default Ember.Component.extend({
   tagName: 'dl',
 
   statusClassName: Ember.computed('className', 'status', function() {
-    return this.get('className') + '-' + this.get('status');
+    return this.get('className') + '-' + Ember.String(this.get('status')).dasherize();
   }),
 
   getStatus: Ember.on('init', function() {
